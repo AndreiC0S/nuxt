@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: 'http://localhost:3002/api' // sau unde rulează backend-ul tău
+      apiBase: 'http://192.168.100.30:3002/api' // sau unde rulează backend-ul tău
     }
   },
 })
