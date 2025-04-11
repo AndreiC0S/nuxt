@@ -91,23 +91,24 @@
           <div v-for="product in filteredProducts" :key="product.id"
             class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300 group ">
             <div class="relative">
-              <div class="overflow-hidden">
+              <div class="overflow-hidden ">
                 <img :src="getImage(product)" :alt="product.name"
                   class="aspect-square object-cover w-full group-hover:scale-105 transition-transform duration-300" />
               </div>
               <div
-                class="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition bg-black/40">
+                class="mt-2 md:absolute md:mt-0 inset-0 flex items-center justify-center gap-3 md:opacity-0 md:group-hover:opacity-100 md:transition md:bg-black/40">
                 <NuxtLink :to="`/${product.slug}/${product.id}`"
-                  class="bg-cyan-600 text-white p-2 rounded-full hover:bg-cyan-600">
+                  class="bg-cyan-600 text-white  h-8 w-8 flex items-center justify-center rounded-full hover:bg-cyan-600">
                   <i class="fas fa-search"></i>
                 </NuxtLink>
-                <button @click="addToCart(product)" class="bg-cyan-600 text-white p-2 rounded-full hover:bg-cyan-600">
+                <button @click="addToCart(product)" class="bg-cyan-600 h-8 w-8 text-white  rounded-full hover:bg-cyan-700">
                   <i class="fas fa-shopping-cart"></i>
                 </button>
               </div>
             </div>
             <div class="p-4 text-center">
               <h2 class="text-md font-semibold text-gray-800 truncate">{{ product.name }}</h2>
+              <p class="text-sm text-gray-500 font-semibold">stoc: {{ product.stock }}</p>
               <p class="text-sm text-gray-500 font-semibold">{{ product.price }} Ron</p>
             </div>
           </div>

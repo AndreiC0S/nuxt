@@ -140,7 +140,8 @@ const submitOrder = async () => {
     console.error('Order submission error:', e);
     if (e.response?._data) {
       console.error('Server said:', e.response._data);
-      alert('Failed: ' + e.response._data.message);
+      alert(e.response._data.message);
+      navigateTo('/')
     } else {
       alert('Failed to submit order.');
     }

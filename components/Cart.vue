@@ -23,9 +23,11 @@
                     <div v-else class="space-y-4 overflow-y-auto flex-grow pr-2">
                         <div v-for="(item, index) in cart.items" :key="index"
                             class="flex items-center gap-3 border-b pb-2">
-                            <img :src="`${config.public.apiBase}/${item.image_url}`" alt="img"
-                                class="h-20 md:h-25 object-center rounded" />
-                            <div class="">
+                            <div>
+                                <img :src="`${config.public.apiBase}/${item.image_url}`" alt="img"
+                                    class="h-20 w-45 md:h-25  rounded" />
+                            </div>
+                            <div class="flex flex-col justify-between  w-full">
                                 <p class="text-sm font-medium">{{ item.name }}</p>
                                 <div class="flex items-center gap-2 text-xs text-gray-500">
                                     <button @click.stop="cart.changeQty(index, -1)"
@@ -34,11 +36,11 @@
                                     <button @click.stop="cart.changeQty(index, 1)"
                                         class="px-2 py-1 bg-cyan-600 text-white rounded">+</button>
                                 </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-sm font-semibold">{{ (item.price * item.quantity).toFixed(2) }} RON</p>
-                                <button @click.stop="cart.remove(index)"
-                                    class="text-cyan-600 text-xs mt-1 hover:underline">Șterge</button>
+                                <div class="text-right">
+                                    <p class="text-sm font-semibold">{{ (item.price * item.quantity).toFixed(2) }} RON</p>
+                                    <button @click.stop="cart.remove(index)"
+                                        class="text-cyan-600 text-xs mt-1 hover:underline">Șterge</button>
+                                </div>
                             </div>
                         </div>
                     </div>
