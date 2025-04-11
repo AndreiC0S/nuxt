@@ -24,7 +24,7 @@
                         <div v-for="(item, index) in cart.items" :key="index"
                             class="flex items-center gap-3 border-b pb-2">
                             <img :src="`${config.public.apiBase}/${item.image_url}`" alt="img"
-                                class="h-25 object-cover rounded" />
+                                class="h-20 md:h-25 object-center rounded" />
                             <div class="">
                                 <p class="text-sm font-medium">{{ item.name }}</p>
                                 <div class="flex items-center gap-2 text-xs text-gray-500">

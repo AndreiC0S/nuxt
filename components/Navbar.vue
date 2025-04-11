@@ -22,20 +22,24 @@
       <NuxtLink to="/cerere-oferta" class="hover:underline font-semibold">Cerere Ofertă Preț</NuxtLink>
     </div>
   </div>
-  <header class="shadow sticky top-0 bg-white opacity-97 z-50">
+  <div class=" flex items-center gap-4 md:hidden">
+        <img src="../assets/img/S.C.-HIDROSERV-REPARATII-CAPITALE-S.R.L-1.png" alt="logo" class="max-h-19" />
 
+  </div>
+  <header class="shadow sticky top-0 bg-white opacity-97 z-50">
+    <!-- Logo + firm name -->
     <!-- Logo + nav -->
     <div class="  flex  justify-between md:px-4 lg:flex flex-row items-center lg:justify-center py-1 ">
       <div class="flex flex-col w-[100vw] md:flex-row md:justify-between md:items-center lg:gap-0 lg:w-[70vw] lg:justify-between lg:items-center">
 
         <!-- Logo + firm name -->
-        <div class="flex items-center gap-4">
+        <div class="hidden  items-center gap-4 md:flex">
           <img src="../assets/img/S.C.-HIDROSERV-REPARATII-CAPITALE-S.R.L-1.png" alt="logo" class="max-h-19" />
 
         </div>
 
         <!-- Nav links -->
-        <div class="flex flex-row gap-6 py-5 relative justify-between px-10 items-center md:gap-5 lg:justify-center  ">
+        <div class="flex flex-row sticky top-0 gap-6 py-5 relative justify-between px-10 items-center md:gap-5 lg:justify-center  ">
           <button @click="isOpen = !isOpen" class="lg:hidden text-gray-800 focus:outline-none">
             <svg v-if="!isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
