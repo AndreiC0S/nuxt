@@ -644,7 +644,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "apiBase": "http://back-test-production-2884.up.railway.app/api"
+    "apiBase": "https://back-test-production-2884.up.railway.app/api"
   }
 };
 const envOptions = {
