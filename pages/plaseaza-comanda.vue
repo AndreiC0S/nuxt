@@ -131,12 +131,13 @@
         method: 'POST',
         body: payload
       })
-      alert('Order submitted successfully!')
       
       cart.clear() // ✅ goleşti tot din store și localStorage
       navigateTo('/')
+      alert('Order submitted successfully!')
 
     } catch (e) {
+      console.error('Order submission error:', e)
       alert('Failed to submit order.')
     }
   }
