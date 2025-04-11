@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: 'http://back-test-production-2884.up.railway.app/api' // sau unde rulează backend-ul tău
+      apiBase: 'https://back-test-production-2884.up.railway.app/api' // sau unde rulează backend-ul tău
     }
   },
 })
