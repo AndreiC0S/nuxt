@@ -133,7 +133,7 @@ const submitOrder = async () => {
     })
 
     cart.clear() // ✅ goleşti tot din store și localStorage
-    navigateTo('/')
+    window.location.href = '/'
     alert('Order submitted successfully!')
 
   } catch (e) {
@@ -141,7 +141,7 @@ const submitOrder = async () => {
     if (e.response?._data) {
       console.error('Server said:', e.response._data);
       alert(e.response._data.message);
-      navigateTo('/')
+      window.location.href = '/'
     } else {
       alert('Failed to submit order.');
     }
