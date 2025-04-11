@@ -1,6 +1,5 @@
 export const useProductStore = defineStore('products', {
 
-
   state: () => ({
     items: []
   }),
