@@ -47,7 +47,7 @@
                         
                         <div @click.stop="toggleCart()"
                             class="w-full bg-cyan-600 text-white py-2 rounded hover:bg-cyan-700 transition">
-                            <NuxtLink :to="`/finalizeazaComanda`"
+                            <NuxtLink :to="`/plaseaza-comanda`"
                                 class="flex items-center justify-center gap-2">
                                 <i class="fas fa-check"></i>
                             <p>Finalizeaza Comanda</p>
