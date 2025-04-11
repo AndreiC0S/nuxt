@@ -50,7 +50,7 @@
             <div class="flex justify-between items-center">
               <div>
                 <p class="font-semibold">{{ product.name }}</p>
-                <p class="text-sm text-gray-600">{{ product.description }}</p>
+                
               </div>
               <div>
                 <span class="font-bold">${{ product.price }}</span>
