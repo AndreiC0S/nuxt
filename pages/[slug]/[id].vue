@@ -15,20 +15,20 @@
         <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">{{ product.name }}</h1>
         <p class="text-3xl text-cyan-600 font-bold">{{ product.price }} RON</p>
 
-        <div v-if="product.colors?.length" class="flex items-center gap-3">
-          <span class="text-sm text-gray-600">Disponibil în:</span>
-          <div v-for="color in product.colors" :key="color" :style="{ backgroundColor: color }"
-            class="w-6 h-6 rounded-full border-2 border-white ring-1 ring-gray-300 shadow"></div>
-        </div>
+        <p class="text-sm text-gray-500 font-semibold">
+          {{ product.stock > 0 ? `În stoc: ${product.stock} produse` : 'Stoc epuizat' }}
+        </p>
 
         <p class="text-gray-700 text-base leading-relaxed border-l-4 pl-4 border-gray-300">
           {{ product.description || 'Acest produs nu are o descriere, dar e probabil genial.' }}
         </p>
 
-        <button @click="addToCart(product)"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-500 text-white text-lg font-semibold rounded-xl shadow-md hover:scale-105 transition-transform">
-          <i class="fas fa-cart-plus"></i> Adaugă în coș
-        </button>
+        <button @click="addToCart(product)" :class="Number(product.stock) > 0
+                  ? 'inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-500 text-white text-lg font-semibold rounded-xl shadow-md hover:scale-105 transition-transform'
+                  : 'inline-flex items-center gap-2 px-6 py-3 bg-slate-600 text-white text-lg font-semibold rounded-xl shadow-md  cursor-not-allowed'"
+                  :disabled="Number(product.stock) === 0">
+                  <i class="fas fa-cart-plus"></i> Adaugă în coș
+          </button>
       </div>
     </div>
 
