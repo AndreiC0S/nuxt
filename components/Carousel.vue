@@ -1,65 +1,39 @@
 <template>
-  <div class="relative overflow-hidden w-full max-w-5xl mx-auto mb-12">
-    <div class="flex transition-transform duration-500" :style="{ transform: `translateX(-${currentIndex * 100}%)` }" style="width: 100%;">
-      <div
-        v-for="(product, index) in featuredProducts"
-        :key="product.id"
-        class="w-full flex-shrink-0"
-      >
-        <div class="bg-white shadow rounded overflow-hidden text-center group relative">
-          <NuxtLink :to="`/${product.slug}/${product.id}`">
-            <img :src="getImage(product)" :alt="product.name" class="w-full h-64 object-cover group-hover:scale-105 transition" />
-            <div class="p-4 absolute bottom-0 w-full bg-white/80 text-gray-800">
-              <p class="font-medium">{{ product.name }}</p>
-              
+<!-- Carousel recomandări -->
+<p>Recomandate</p>
+    <div class="flex overflow-x-auto gap-4 mt-6 pb-2 scrollbar-hide scroll-smooth snap-x snap-mandatory">
+      <div v-for="item in items" :key="item.id"
+        class="w-[250px] flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md snap-start">
+        <a href="#" @click.prevent="loadProduct(item)">
+            <img :src="getImage(item)" :alt="item.name" class="w-[250px] h-30 object-cover" />
+            <div class="p-4 space-y-1">
+              <p class="text-base font-medium text-gray-800 truncate">{{ item.name }}</p>
+              <p class="text-sm text-gray-500">{{ item.price }} RON</p>
             </div>
-          </NuxtLink>
-        </div>
+          </a>
       </div>
     </div>
-    <div class="absolute inset-y-1/2 left-0 flex items-center">
-      <button @click="prev" class="bg-white shadow p-2 rounded-full ml-2">&#8592;</button>
-    </div>
-    <div class="absolute inset-y-1/2 right-0 flex items-center">
-      <button @click="next" class="bg-white shadow p-2 rounded-full mr-2">&#8594;</button>
-    </div>
-  </div>
 </template>
+
 <script setup>
-
-const config = useRuntimeConfig()
-const productStore = useProductStore()
-await productStore.fetchAll(config)
-
-const featuredProducts = computed(() => {
-  return [...productStore.items]
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 4)
+const { items, loadProduct } = defineProps({
+  items: {
+    type: Array,
+    required: true
+  },
+  loadProduct: {
+    type: Function,
+    required: true
+  }
 })
 
-const currentIndex = ref(0)
-
 function getImage(product) {
-  return product.image_url
-    ? `${config.public.apiBase}/${product.image_url}`
-    : '/placeholder.jpg'
-}
+  if (!product?.image_url) return ''
+  
+  // dacă deja e url complet, returnează direct
+  if (product.image_url.startsWith('http')) return product.image_url
 
-
-
-function next() {
-  if (currentIndex.value < featuredProducts.value.length - 1) {
-    currentIndex.value++
-  } else {
-    currentIndex.value = 0
-  }
-}
-
-function prev() {
-  if (currentIndex.value > 0) {
-    currentIndex.value--
-  } else {
-    currentIndex.value = featuredProducts.value.length - 1
-  }
+  // altfel, concatenează corect
+  return `${config.public.apiBase.replace(/\/$/, '')}/${product.image_url.replace(/^\//, '')}`
 }
 </script>

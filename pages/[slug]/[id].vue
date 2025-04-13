@@ -41,14 +41,17 @@
     <p>Recomandate</p>
     <div class="flex overflow-x-auto gap-4 mt-6 pb-2 scrollbar-hide scroll-smooth snap-x snap-mandatory">
       <div v-for="item in relatedProducts" :key="item.id"
-        class="min-w-[250px] flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md snap-start">
-        <NuxtLink :to="`/${item.slug}/${item.id}`">
-          <img :src="getImage(item)" :alt="item.name" class="w-full h-40 object-cover" />
-          <div class="p-4 space-y-1">
-            <p class="text-base font-medium text-gray-800 truncate">{{ item.name }}</p>
-            <p class="text-sm text-gray-500">{{ item.price }} RON</p>
-          </div>
-        </NuxtLink>
+        class="w-[250px] flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md snap-start">
+        <!-- <NuxtLink :to="`/${item.slug}/${item.id}`" > -->
+          <a href="#" @click.prevent="loadProduct(item)">
+
+            <img :src="getImage(item)" :alt="item.name" class="w-[250px] h-30 object-cover" />
+            <div class="p-4 space-y-1">
+              <p class="text-base font-medium text-gray-800 truncate">{{ item.name }}</p>
+              <p class="text-sm text-gray-500">{{ item.price }} RON</p>
+            </div>
+          </a>
+        <!-- </NuxtLink> -->
       </div>
     </div>
   </section>
@@ -57,9 +60,26 @@
 <script setup>
 const cart = useCartStore()
 const route = useRoute()
+const router = useRouter()
 const config = useRuntimeConfig()
 
-const { data: product } = await useFetch(`${config.public.apiBase}/products/${route.params.id}`)
+const product = ref(null)
+
+const all = await $fetch(`${config.public.apiBase}/products`)
+
+product.value = all.find(p => p.id === Number(route.params.id))
+
+const currentCatIds = product.value?.categories?.map(cat => cat.id) || []
+
+const relatedProducts = ref([])
+
+const sameCategoryProducts = all.filter(p => {
+  if (p.id === product.value.id || !p.categories) return false
+  const pCatIds = p.categories.map(cat => cat.id)
+  return pCatIds.some(id => currentCatIds.includes(id))
+})
+
+relatedProducts.value = sameCategoryProducts.sort(() => 0.5 - Math.random()).slice(0, 4)
 
 useHead({
   title: `${product.value?.name} - MyShop`,
@@ -81,20 +101,18 @@ function addToCart(product) {
   cart.add(product)
 }
 
-const relatedProducts = ref([])
-
-if (product.value?.categories?.length) {
-  const all = await $fetch(`${config.public.apiBase}/products`)
-
-  const currentCatIds = product.value.categories.map(cat => cat.id)
-
-  const sameCategoryProducts = all.filter(p => {
-    if (p.id === product.value.id || !p.categories) return false
-    const pCatIds = p.categories.map(cat => cat.id)
-    return pCatIds.some(id => currentCatIds.includes(id))
+function loadProduct(item) {
+  product.value = item
+  router.replace(`/${item.slug}/${item.id}`)
+  useHead({
+    title: `${item.name} - MyShop`,
+    meta: [
+      {
+        name: 'description',
+        content: item.description || 'Vezi detalii despre acest produs.'
+      }
+    ]
   })
-
-  relatedProducts.value = sameCategoryProducts.sort(() => 0.5 - Math.random()).slice(0, 4)
 }
 </script>
 <style scoped>

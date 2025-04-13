@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen flex flex-col items-center  bg-gray-100">
-    <div class="flex p-2 w-full md:w-full lg:w-[75vw]  flex-col  xs:flex-col  sm:flex-col sm:flex-row md:flex-row lg:flex-row sm:gap-4 md:gap-4 lg:gap-8  mt-10 ">
+    <div class="flex p-2 w-full md:w-full lg:w-[75vw]  flex-col  xs:flex-col  sm:flex-col sm:flex-row md:flex-row lg:flex-row sm:gap-4 md:gap-4 lg:gap-8  mt-2 md:mt-10 ">
       <!-- Sidebar Filters -->
       <aside class="w-full mb-5  sm:w-[30%] md:w-[25%] lg:w-[22%] shrink-0 space-y-6 bg-white p-4 rounded h-fit ">
         <div class=" sm:hidden h-[10px]  cursor-pointer" @click="showFilters = !showFilters">
@@ -73,9 +73,13 @@
                   class="absolute top-0 left-0 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-br-lg">
                   Stoc epuizat
                 </div>
-                <div v-else-if="Number(product.stock) < 10"
+                <div v-else-if="Number(product.stock) > 1 && Number(product.stock) <=  10"
                   class="absolute top-0 left-0 bg-yellow-500 text-white text-xs font-semibold px-2 py-1 rounded-br-lg">
                   ultimele {{ product.stock }} produse
+                </div>
+                <div v-else-if="Number(product.stock) === 1 "
+                  class="absolute top-0 left-0 bg-yellow-500 text-white text-xs font-semibold px-2 py-1 rounded-br-lg">
+                  Ultimul produs
                 </div>
               </div>
               <div class="overflow-hidden ">

@@ -47,7 +47,7 @@
                     <div class="mt-4">
                         <p class="font-semibold text-right mb-2 text-cyan-600">Total: {{ cart.totalPrice }} RON</p>
                         
-                        <div @click.stop="toggleCart()"
+                        <div v-if="cart.items.length >= 1" @click.stop="toggleCart()"
                             class="w-full bg-cyan-600 text-white py-2 rounded hover:bg-cyan-700 transition">
                             <NuxtLink :to="`/plaseaza-comanda`"
                                 class="flex items-center justify-center gap-2">
@@ -65,6 +65,7 @@
 
 <script setup>
 const cart = useCartStore()
+
 onMounted(() => cart.load())
 const config = useRuntimeConfig()
 const cartOpen = ref(false)

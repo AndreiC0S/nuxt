@@ -19,7 +19,7 @@
     </div>
     <div class="flex gap-4 mt-2  hidden lg:flex mt-0">
       <NuxtLink to="/confidentialitate" class="hover:underline">Politica de confidențialitate</NuxtLink>
-      <NuxtLink to="/cerere-oferta" class="hover:underline font-semibold">Cerere Ofertă Preț</NuxtLink>
+      <NuxtLink to="/contact" class="hover:underline font-semibold">Cerere Ofertă Preț</NuxtLink>
     </div>
   </div>
   <div class=" flex items-center gap-4 md:hidden">
@@ -54,32 +54,53 @@
             <ul class="flex  gap-5  items-center  text-sm font-medium text-gray-700">
 
               <li>
-                <NuxtLink to="/" class="hover:text-blue-600">Acasă</NuxtLink>
+                <NuxtLink
+                  to="/"
+                  :class="{
+                    'text-cyan-600 font-semibold': $route.path === '/',
+                    'hover:text-blue-600': $route.path !== '/'
+                  }"
+                >
+                  Acasă
+                </NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/despre-noi" class="hover:text-blue-600">Despre Noi</NuxtLink>
+                <NuxtLink
+                  to="/despre-noi"
+                  :class="{
+                    'text-cyan-600 font-semibold': $route.path === '/despre-noi',
+                    'hover:text-blue-600': $route.path !== '/despre-noi'
+                  }"
+                >
+                  Despre Noi
+                </NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/produse" class="hover:text-blue-500">Produse</NuxtLink>
+                <NuxtLink
+                  to="/produse"
+                  :class="{
+                    'text-cyan-600 font-semibold': $route.path === '/produse',
+                    'hover:text-blue-500': $route.path !== '/produse'
+                  }"
+                >
+                  Produse
+                </NuxtLink>
               </li>
-              <!-- <li>
-                <NuxtLink to="/servicii" class="hover:text-blue-600">Servicii</NuxtLink>
-              </li> -->
-              
               <li>
-                <NuxtLink to="/contact" class="hover:text-blue-600">Contact</NuxtLink>
+                <NuxtLink
+                  to="/contact"
+                  :class="{
+                    'text-cyan-600 font-semibold': $route.path === '/contact',
+                    'hover:text-blue-600': $route.path !== '/contact'
+                  }"
+                >
+                  Contact
+                </NuxtLink>
               </li>
 
-             
             </ul>
           </nav>
           <Cart />
-
-
-          
-
-     
-
 
         </div>
       </div>
@@ -96,12 +117,17 @@
     >
     <ul class="space-y-1 flex flex-col justify-center  items-center ">
     <li v-for="item in menuItems" :key="item.label" class="w-full text-center py-1 ">
-      <NuxtLink :to="item.to" class="block text-gray-800 hover:text-blue-600">
+      <NuxtLink
+        :to="item.to"
+        :class="{
+          'text-cyan-600 font-semibold': $route.path === item.to,
+          'hover:text-blue-600': $route.path !== item.to
+        }"
+      >
         {{ item.label }}
       </NuxtLink>
     </li>
   </ul>
-  
   
       </div>
   
@@ -133,9 +159,6 @@ function enter(el) {
 function leave(el) {
   el.style.maxHeight = '0px'
 }
-
-
-
 </script>
 
 <style scoped>
