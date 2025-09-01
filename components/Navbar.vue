@@ -4,12 +4,12 @@
     <div class="info flex items-center justify-bethween gap-4 w-[50vw]">
       <div class="flex items-center gap-1">
         <i class="fas fa-phone-alt"></i>
-        <a href="tel:0769893945" class="hover:underline">0769893945</a>
+        <a href="tel:07000000" class="hover:underline">07000000</a>
       </div>
       <div class="flex items-center gap-1">
         <i class="fas fa-envelope"></i>
-        <a href="mailto:hidroservreparatiicapitalsrl@gmail.com" class="hover:underline">
-          hidroservreparatiicapitalsrl@gmail.com
+        <a href="mailto:test_test@gmail.com" class="hover:underline">
+          test_test@gmail.com
         </a>
       </div>
       <div class=" items-center gap-2 hidden lg:flex mt-0">
@@ -22,10 +22,10 @@
       <NuxtLink to="/contact" class="hover:underline font-semibold">Cerere Ofertă Preț</NuxtLink>
     </div>
   </div>
-  <div class=" flex items-center gap-4 md:hidden">
+  <!-- <div class=" flex items-center gap-4 md:hidden">
         <img src="../assets/img/S.C.-HIDROSERV-REPARATII-CAPITALE-S.R.L-1.png" alt="logo" class="max-h-19" />
 
-  </div>
+  </div> -->
   <header class="shadow sticky top-0 bg-white opacity-97 z-50">
     <!-- Logo + firm name -->
     <!-- Logo + nav -->

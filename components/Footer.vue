@@ -6,7 +6,7 @@
       <div class="flex flex-col lg:flex-row justify-between items-center gap-6 text-sm">
         <!-- Text legal -->
         <div class="text-center lg:text-left">
-          <p>&copy; {{ new Date().getFullYear() }} HIDROSERV REPARATII CAPITALE S.R.L</p>
+          <p>&copy; {{ new Date().getFullYear() }}  S.R.L</p>
           <p class="text-gray-400">Toate drepturile rezervate</p>
         </div>
 
